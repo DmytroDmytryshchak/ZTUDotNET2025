@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 abstract class MusicalInstrument
 {
     public string Name { get; set; }
@@ -22,7 +23,7 @@ abstract class MusicalInstrument
         Desc();
         History();
         Sound();
-        Console.WriteLine("*****************************");
+        Console.WriteLine("\n*****************************\n");
     }
 }
 
@@ -68,6 +69,10 @@ class Program
 {
     static void Main()
     {
+        Console.WriteLine("Lab01");
+        Console.WriteLine("Author: Dmytro Dmytryshchak; ZIPZ-24-1");
+        Console.WriteLine("\n*****************************\n");
+
         MusicalInstrument[] instruments = new MusicalInstrument[]
         {
             new Violin("Violin", "Wooden, 4 strings"),
