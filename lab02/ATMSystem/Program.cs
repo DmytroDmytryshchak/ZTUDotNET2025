@@ -113,9 +113,15 @@ namespace ATMSystem {
             DrawFrame();
             PrintHeader(acc);
             CenterText(7, "ВВЕДІТЬ СУМУ ЗНЯТТЯ:");
-            if (decimal.TryParse(ReadCenteredInput(10, 10), out decimal sum)) {
-                OperationScreen(acc, () => atm.Withdraw(acc, sum));
+
+            decimal sum;
+            while (!decimal.TryParse(ReadCenteredInput(10, 10), out sum) || sum <= 0)
+            {
+                ShowCenteredMessage("Введіть коректну позитивну суму!");
+                CenterText(7, "ВВЕДІТЬ СУМУ ЗНЯТТЯ:");
             }
+
+            OperationScreen(acc, () => atm.Withdraw(acc, sum));
         }
 
         static void DepositScreen(Account acc) {
@@ -123,9 +129,15 @@ namespace ATMSystem {
             DrawFrame();
             PrintHeader(acc);
             CenterText(7, "ВВЕДІТЬ СУМУ ПОПОВНЕННЯ:");
-            if (decimal.TryParse(ReadCenteredInput(10, 10), out decimal sum)) {
-                OperationScreen(acc, () => atm.Deposit(acc, sum));
+
+            decimal sum;
+            while (!decimal.TryParse(ReadCenteredInput(10, 10), out sum) || sum <= 0)
+            {
+                ShowCenteredMessage("Введіть коректну позитивну суму!");
+                CenterText(7, "ВВЕДІТЬ СУМУ ПОПОВНЕННЯ:");
             }
+
+            OperationScreen(acc, () => atm.Deposit(acc, sum));
         }
 
         static void TransferScreen(Account acc) {
@@ -137,9 +149,15 @@ namespace ATMSystem {
             string card = ReadCardNumberCentered(10);
 
             CenterText(13, "СУМА ПЕРЕКАЗУ:");
-            if (decimal.TryParse(ReadCenteredInput(15, 10), out decimal sum)) {
-                OperationScreen(acc, () => atm.Transfer(acc, card, sum));
+
+            decimal sum;
+            while (!decimal.TryParse(ReadCenteredInput(15, 10), out sum) || sum <= 0)
+            {
+                ShowCenteredMessage("Введіть коректну позитивну суму!");
+                CenterText(13, "СУМА ПЕРЕКАЗУ:");
             }
+
+            OperationScreen(acc, () => atm.Transfer(acc, card, sum));
         }
 
         static void OperationScreen(Account acc, Action operation) {
