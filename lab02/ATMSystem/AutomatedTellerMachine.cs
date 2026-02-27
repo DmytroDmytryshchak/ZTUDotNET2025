@@ -2,6 +2,7 @@
 
 namespace ATMSystem {
     public class AutomatedTellerMachine {
+        private const decimal MinimumAmount = 0;
         public string ATMId { get; set; }
         public string Address { get; set; }
         private Bank bank;
@@ -36,7 +37,7 @@ namespace ATMSystem {
         }
 
         public void Withdraw(Account acc, decimal amount) {
-            if (amount <= 0) {
+            if (amount <= MinimumAmount) {
                 Withdrawn?.Invoke("Сума повинна бути більшою за нуль.");
                 return;
             }
@@ -45,7 +46,7 @@ namespace ATMSystem {
         }
 
         public void Deposit(Account acc, decimal amount) {
-            if (amount <= 0) {
+            if (amount <= MinimumAmount) {
                 Added?.Invoke("Сума повинна бути більшою за нуль.");
                 return;
             }
@@ -65,7 +66,7 @@ namespace ATMSystem {
                 return;
             }
 
-            if (amount <= 0) {
+            if (amount <= MinimumAmount) {
                 TransferCompleted?.Invoke("Сума має бути більшою за нуль.");
                 return;
             }
