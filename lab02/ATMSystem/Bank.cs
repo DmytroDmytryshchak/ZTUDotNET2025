@@ -13,7 +13,15 @@ namespace ATMSystem {
         public void AddAccount(Account acc) => accounts.Add(acc);
 
         public Account GetAccountByCard(string cardNumber) {
-            return accounts.FirstOrDefault(a => a.CardNumber == cardNumber);
+            var account = accounts.FirstOrDefault(a => a.CardNumber == cardNumber);
+
+            if (account == null)
+            {
+                Console.WriteLine("Account not found");
+                return null;
+            }
+
+            return account;
         }
 
         public List<Account> GetAllAccounts() => accounts;
